@@ -2,6 +2,10 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize, differential_evolution
+from pathlib import Path
+
+OUTPUT_DIR = Path(__file__).resolve().parents[1] / "outputs" / "generated"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
 plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
@@ -248,7 +252,7 @@ def visualize_results(data, params_1, params_2, params_3, predictions, rmse, flo
     plt.grid(True)
     plt.legend()
     plt.tight_layout()
-    plt.savefig('Q-4_主路和支路流量_优化后.png', dpi=300, bbox_inches='tight')
+    plt.savefig(OUTPUT_DIR / 'Q-4_主路和支路流量_优化后.png', dpi=300, bbox_inches='tight')
 
     # 第二幅图：堆叠图
     plt.figure(figsize=(14, 8))
@@ -273,10 +277,10 @@ def visualize_results(data, params_1, params_2, params_3, predictions, rmse, flo
     plt.grid(True)
     plt.legend()
     plt.tight_layout()
-    plt.savefig('Q-4_支路车流量叠加_优化后.png', dpi=300, bbox_inches='tight')
+    plt.savefig(OUTPUT_DIR / 'Q-4_支路车流量叠加_优化后.png', dpi=300, bbox_inches='tight')
 
     # 保存结果到文件
-    with open('Q-4_result_优化后.txt', 'w', encoding='utf-8') as f:
+    with open(OUTPUT_DIR / 'Q-4_result_优化后.txt', 'w', encoding='utf-8') as f:
         f.write("优化结果：\n")
         f.write(
             f"支路1参数 (t_start, t_peak, t_end, max_flow): ({t_start:.4f}, {t_peak:.4f}, {t_end:.4f}, {max_flow_1:.4f})\n")

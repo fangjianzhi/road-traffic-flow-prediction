@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the published article."
+title: "Road Traffic Flow Prediction for Branch-Merging Roads"
+type: software
+authors:
+  - family-names: Liu
+    given-names: Xuejian
+  - family-names: Li
+    given-names: Yixin
+  - family-names: Luo
+    given-names: Zijian
+repository-code: "https://github.com/fangjianzhi/road-traffic-flow-prediction"
+license: MIT
+preferred-citation:
+  type: article
+  title: "Research on the Construction and Prediction of Traffic Flow Models for Roads Incorporating Branch Connections"
+  authors:
+    - family-names: Liu
+      given-names: Xuejian
+    - family-names: Li
+      given-names: Yixin
+    - family-names: Luo
+      given-names: Zijian
+  journal: "Modeling and Simulation"
+  volume: 15
+  issue: 1
+  start: 93
+  end: 103
+  year: 2026
+  date-published: 2026-01-06
+  doi: 10.12677/mos.2026.151009

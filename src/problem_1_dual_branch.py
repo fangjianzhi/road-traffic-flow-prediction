@@ -5,6 +5,10 @@ import plotly.graph_objects as go
 import plotly.express as px
 from scipy.optimize import minimize
 import pandas as pd
+from pathlib import Path
+
+OUTPUT_DIR = Path(__file__).resolve().parents[1] / "outputs" / "generated"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # 设置样式
 plt.style.use('seaborn-v0_8')
@@ -100,7 +104,7 @@ plt.legend(fontsize=10)
 plt.tight_layout()
 
 # 保存第一个图表
-plt.savefig('Q-1_预测结果.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUTPUT_DIR / 'Q-1_预测结果.png', dpi=300, bbox_inches='tight')
 
 # 堆叠图 - 使用seaborn增强效果
 plt.figure(figsize=(14, 8))
@@ -116,7 +120,7 @@ plt.legend(fontsize=10)
 plt.tight_layout()
 
 # 保存第二个图表
-plt.savefig('Q-1_堆叠图.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUTPUT_DIR / 'Q-1_堆叠图.png', dpi=300, bbox_inches='tight')
 
 # 创建交互式图表
 fig = go.Figure()
@@ -175,10 +179,10 @@ fig.update_layout(
 )
 
 # 保存交互式图表
-fig.write_html('Q-1_交互式图表.html')
+fig.write_html(str(OUTPUT_DIR / 'Q-1_交互式图表.html'))
 
 # 保存结果到文件
-with open('Q-1_result.txt', 'w', encoding='utf-8') as f:
+with open(OUTPUT_DIR / 'Q-1_result.txt', 'w', encoding='utf-8') as f:
     f.write("优化结果：\n")
     f.write(f"支路1函数参数 (a, b): ({a:.6f}, {b:.6f})\n")
     f.write(f"支路2函数参数 (c, d): ({c:.6f}, {d:.6f})\n")

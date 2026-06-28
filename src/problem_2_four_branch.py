@@ -2,6 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 import pandas as pd
+from pathlib import Path
+
+OUTPUT_DIR = Path(__file__).resolve().parents[1] / "outputs" / "generated"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # 中文显示设置
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
@@ -177,7 +181,7 @@ plt.legend()
 plt.tight_layout()
 
 # 保存第一个图表
-plt.savefig('Q-2_主路5和各支路车流量.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUTPUT_DIR / 'Q-2_主路5和各支路车流量.png', dpi=300, bbox_inches='tight')
 
 plt.figure(figsize=(14, 8))
 plt.plot(t, flow, 'bo-', label='主路5实际车流量', alpha=0.5)
@@ -201,7 +205,7 @@ plt.legend()
 plt.tight_layout()
 
 # 保存第二个图表
-plt.savefig('Q-2_支路车流量叠加.png', dpi=300, bbox_inches='tight')
+plt.savefig(OUTPUT_DIR / 'Q-2_支路车流量叠加.png', dpi=300, bbox_inches='tight')
 
 plt.show()
 
@@ -217,7 +221,7 @@ print(f"  当 t <= {t_break3:.1f} 时: f3(t) = {c1:.4f}*t + {c2:.4f}")
 print(f"  当 t > {t_break3:.1f} 时: f3(t) = {c3:.4f}")
 print(f"支路4: f4(t) = {d1:.4f}*sin({d2:.4f}*t + {d3:.4f}) + {d4:.4f}")
 
-with open('Q-2_result.txt', 'w', encoding='utf-8') as f:
+with open(OUTPUT_DIR / 'Q-2_result.txt', 'w', encoding='utf-8') as f:
     f.write("优化结果：\n")
     f.write(f"支路1稳定流量 (a): {params[0]:.4f}\n")
     f.write(f"支路2参数 (b1, b2, b3): ({params[1]:.4f}, {params[2]:.4f}, {params[3]:.4f})\n")

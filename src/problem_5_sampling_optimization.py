@@ -6,6 +6,10 @@ from scipy.linalg import pinv
 import itertools
 from functools import lru_cache
 from joblib import Parallel, delayed
+from pathlib import Path
+
+OUTPUT_DIR = Path(__file__).resolve().parents[1] / "outputs" / "generated"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 正常显示中文
 plt.rcParams['axes.unicode_minus'] = False  # 正常显示负号
@@ -280,7 +284,7 @@ def visualize_results(problem2_points, problem3_points):
                   loc='left')
 
     # 保存输出
-    plt.savefig('Premium_Visualization.png',
+    plt.savefig(OUTPUT_DIR / 'Premium_Visualization.png',
                 dpi=300,
                 bbox_inches='tight',
                 facecolor='white')

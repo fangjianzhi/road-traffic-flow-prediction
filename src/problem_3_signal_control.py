@@ -5,15 +5,16 @@ import matplotlib.pyplot as plt
 from scipy.optimize import differential_evolution
 from datetime import datetime, timedelta
 import sys
-import subprocess
+from pathlib import Path
 
 # ========== 系统配置 ==========
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 中文显示设置
 plt.rcParams['axes.unicode_minus'] = False
 
 # ========== 文件路径配置 ==========
-file_path = r"D:\涅衍\五一赛-A 优化\附件(Attachment).xlsx"
-output_dir = r"D:\涅衍\五一赛-A 优化"
+REPO_ROOT = Path(__file__).resolve().parents[1]
+file_path = REPO_ROOT / "data" / "competition_attachment.xlsx"
+output_dir = REPO_ROOT / "outputs" / "generated"
 
 
 # ========== 系统检查 ==========
@@ -36,14 +37,6 @@ def load_data():
         sys.exit(1)
 
     try:
-        # 自动安装依赖
-        try:
-            import openpyxl
-        except ImportError:
-            print("正在安装依赖包openpyxl...")
-            subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'openpyxl'])
-            import openpyxl
-
         # 读取数据
         data_table3 = pd.read_excel(file_path, sheet_name='表3 (Table 3)', engine='openpyxl')
 
@@ -350,8 +343,7 @@ class ResultProcessor:
 
     def _save_plot(self, filename):
         """统一保存图表"""
-        if not os.path.exists(output_dir):
-            os.makedirs(output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
         plt.savefig(os.path.join(output_dir, filename), dpi=300, bbox_inches='tight')
 
     def save_results(self):
